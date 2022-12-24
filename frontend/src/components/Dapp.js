@@ -24,6 +24,7 @@ import { PotTotal } from "./PotTotal";
 // Here's a list of network ids https://docs.metamask.io/guide/ethereum-provider.html#properties
 // to use when deploying to other networks.
 const HARDHAT_NETWORK_ID = '1337';
+const MUMBAI_NETWORK_ID = '80001';
 
 // This is an error code that indicates that the user canceled a transaction
 const ERROR_CODE_TX_REJECTED_BY_USER = 4001;
@@ -448,12 +449,12 @@ export class Dapp extends React.Component {
 
   // This method checks if Metamask selected network is Localhost:8545 
   _checkNetwork() {
-    if (window.ethereum.networkVersion === HARDHAT_NETWORK_ID) {
+    if ([HARDHAT_NETWORK_ID, MUMBAI_NETWORK_ID].includes(window.ethereum.networkVersion)) {
       return true;
     }
 
     this.setState({ 
-      networkError: 'Please connect Metamask to Localhost:8545'
+      networkError: 'Please connect Metamask to Valid Network : Mumbai'
     });
 
     return false;
